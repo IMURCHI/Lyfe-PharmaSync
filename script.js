@@ -95,8 +95,12 @@ function handleSignup() {
     switchAuthTab('login'); 
 }
 
+
+// ========= LOGIN AUTHENTICATION IS DONE ========
 function handleLogin(event) {
-    if (event) event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
     
     const usernameInput = document.getElementById('login-user').value.trim();
     const pwdInput = document.getElementById('login-pwd').value;
@@ -108,61 +112,48 @@ function handleLogin(event) {
     toBeSend.append('role', roleInput);
 
     try {
-        const response = await fetch('login.php', {
+        const response = await fetch('authentication.php', {
             method: 'POST',
             body: toBeSend
         });
 
         const data = await response.json();
 
+        // lalagyan ng design feel ko pag nirun to pure text lang hehe
         if (!data.success){
             return alert("Access Denied: " + data.message);
         }
 
-        current
+        currentUserRole = data.user.role;
+        currentUsername = data.user.name;
+        currentUserId = data.user.id;
+
+        document.getElementById('user-role-display').innerText = currentUserRole;
+        document.getElementById('user-name-display').innerText = currentUserName;
+
+        // para ipakita yung modules na kaya nilang iaccess based on roles
+        document.querySelectorAll('.module-link').forEach(btn => {
+            const allowedRoles = btn.getAttribute('data-roles').split(',');
+            if (allowedRoles.includes(currentUserRole)) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        document.getElementById('auth-screen').classList.add('hidden');
+        document.getElementById('app-sidebar').style.display = 'flex';
+        document.getElementById('app-content').style.display = 'flex';
+
+        switchModule('dashboard');
+        initCharts();
+        refreshUI();
+        renderSmsSettings(); 
 
     } catch (error) {
-        
+        console.error("System error: ", error);
+        alert("A connection error occurred with the server. Please ensure the database hosting is up.")
     }
-
-    // let userObj = usersDb.find(u => u.id === usernameInput);
-
-    // if (!userObj) {
-    //     const selectedRole = document.getElementById('login-role').value;
-    //     userObj = selectedRole === "Owner" ? usersDb[0] : usersDb[1];
-    // }
-
-    // if (userObj.password !== pwdInput) {
-    //     return alert("Access Denied: Invalid password.");
-    // }
-
-    // currentUserRole = userObj.role;
-    // currentUserName = userObj.name;
-    // currentUserId = userObj.id;
-
-    // userObj.status = "Online";
-    // userObj.lastLogin = new Date().toLocaleString();
-
-    // document.getElementById('user-role-display').innerText = currentUserRole;
-    // document.getElementById('user-name-display').innerText = currentUserName;
-
-    // document.querySelectorAll('.module-link').forEach(btn => {
-    //     const allowedRoles = btn.getAttribute('data-roles').split(',');
-    //     if (allowedRoles.includes(currentUserRole)) {
-    //         btn.style.display = 'block';
-    //     } else {
-    //         btn.style.display = 'none';
-    //     }
-    // });
-
-    // document.getElementById('auth-screen').classList.add('hidden');
-    // document.getElementById('app-sidebar').style.display = 'flex';
-    // document.getElementById('app-content').style.display = 'flex';
-
-    switchModule('dashboard');
-    initCharts();
-    refreshUI();
-    renderSmsSettings(); 
 }
 
 function handleLogout() {
