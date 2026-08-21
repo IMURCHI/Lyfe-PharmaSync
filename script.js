@@ -1,113 +1,45 @@
 document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
 // inventory db
-// let db = [
-//     { id: 1, batch: "B-101", name: "Amoxicillin 500mg Cap", stock: 350, price: 12.50, expiry: "2027-05-10", rxRequired: true }, 
-//     { id: 2, batch: "B-102", name: "Paracetamol 500mg Tab", stock: 15, price: 5.00, expiry: "2027-11-20", rxRequired: false },
-//     { id: 3, batch: "B-103", name: "Ascorbic Acid (Vit C)", stock: 120, price: 150.00, expiry: "2026-04-15", rxRequired: false },
-//     { id: 4, batch: "B-104", name: "Ibuprofen 400mg Tab", stock: 200, price: 8.75, expiry: "2028-01-12", rxRequired: false },
-//     { id: 5, batch: "B-105", name: "Cetirizine 10mg Tab", stock: 85, price: 15.00, expiry: "2026-08-30", rxRequired: false },
-//     { id: 6, batch: "B-106", name: "Loperamide 2mg Cap", stock: 50, price: 6.25, expiry: "2027-02-28", rxRequired: false },
-//     { id: 7, batch: "B-107", name: "Salbutamol 2mg Tab", stock: 300, price: 4.50, expiry: "2028-11-05", rxRequired: true }, 
-//     { id: 8, batch: "B-108", name: "Losartan 50mg Tab", stock: 18, price: 22.00, expiry: "2026-05-20", rxRequired: true }, 
-//     { id: 9, batch: "B-109", name: "Omeprazole 20mg Cap", stock: 150, price: 35.00, expiry: "2027-09-15", rxRequired: true }, 
-//     { id: 10, batch: "B-110", name: "Mefenamic Acid 500mg", stock: 110, price: 11.50, expiry: "2026-04-18", rxRequired: true } 
-// ];
+let db = [
+    { id: 1, batch: "B-101", name: "Amoxicillin 500mg Cap", stock: 350, price: 12.50, expiry: "2027-05-10", rxRequired: true }, 
+    { id: 2, batch: "B-102", name: "Paracetamol 500mg Tab", stock: 15, price: 5.00, expiry: "2027-11-20", rxRequired: false },
+    { id: 3, batch: "B-103", name: "Ascorbic Acid (Vit C)", stock: 120, price: 150.00, expiry: "2026-04-15", rxRequired: false },
+    { id: 4, batch: "B-104", name: "Ibuprofen 400mg Tab", stock: 200, price: 8.75, expiry: "2028-01-12", rxRequired: false },
+    { id: 5, batch: "B-105", name: "Cetirizine 10mg Tab", stock: 85, price: 15.00, expiry: "2026-08-30", rxRequired: false },
+    { id: 6, batch: "B-106", name: "Loperamide 2mg Cap", stock: 50, price: 6.25, expiry: "2027-02-28", rxRequired: false },
+    { id: 7, batch: "B-107", name: "Salbutamol 2mg Tab", stock: 300, price: 4.50, expiry: "2028-11-05", rxRequired: true }, 
+    { id: 8, batch: "B-108", name: "Losartan 50mg Tab", stock: 18, price: 22.00, expiry: "2026-05-20", rxRequired: true }, 
+    { id: 9, batch: "B-109", name: "Omeprazole 20mg Cap", stock: 150, price: 35.00, expiry: "2027-09-15", rxRequired: true }, 
+    { id: 10, batch: "B-110", name: "Mefenamic Acid 500mg", stock: 110, price: 11.50, expiry: "2026-04-18", rxRequired: true } 
+];
 
-// // user db
-// let usersDb = [
-//     { id: "admin", name: "John Kaye P. Fernandez", role: "Owner", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
-//     { id: "joseph_staff", name: "Joseph Osena", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
-//     { id: "francis_staff", name: "Francis Mariscal", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" }
-// ];
+// user db
+let usersDb = [
+    { id: "admin", name: "John Kaye P. Fernandez", role: "Owner", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
+    { id: "joseph_staff", name: "Joseph Osena", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
+    { id: "francis_staff", name: "Francis Mariscal", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" }
+];
 
-// // 
-// let cart = [];
+// 
+let cart = [];
 
-// // auditlogs db
-// let salesHistory = [
-//     { txn: "TXN-84729", items: "Paracetamol 500mg Tab | Cetirizine 10mg Tab", qty: 2, total: 20.00, time: "09:14 AM", cashier: "Joseph Osena" },
-//     { txn: "TXN-39201", items: "Losartan 50mg Tab | Ascorbic Acid (Vit C)", qty: 2, total: 172.00, time: "11:30 AM", cashier: "Francis Mariscal" },
-//     { txn: "TXN-55821", items: "Amoxicillin 500mg Cap", qty: 1, total: 12.50, time: "01:45 PM", cashier: "Joseph Osena" },
-//     { txn: "TXN-91023", items: "Mefenamic Acid 500mg | Loperamide 2mg Cap | Salbutamol 2mg Tab", qty: 3, total: 22.25, time: "03:10 PM", cashier: "Francis Mariscal" }
-// ];
+// auditlogs db
+let salesHistory = [
+    { txn: "TXN-84729", items: "Paracetamol 500mg Tab | Cetirizine 10mg Tab", qty: 2, total: 20.00, time: "09:14 AM", cashier: "Joseph Osena" },
+    { txn: "TXN-39201", items: "Losartan 50mg Tab | Ascorbic Acid (Vit C)", qty: 2, total: 172.00, time: "11:30 AM", cashier: "Francis Mariscal" },
+    { txn: "TXN-55821", items: "Amoxicillin 500mg Cap", qty: 1, total: 12.50, time: "01:45 PM", cashier: "Joseph Osena" },
+    { txn: "TXN-91023", items: "Mefenamic Acid 500mg | Loperamide 2mg Cap | Salbutamol 2mg Tab", qty: 3, total: 22.25, time: "03:10 PM", cashier: "Francis Mariscal" }
+];
 
-// let inventoryHistory = []; 
-// let totalRevenue = 226.75; 
-// let currentUserRole = "Owner";
-// let currentUserName = "John Kaye P. Fernandez";
-// let currentUserId = "admin";
-// let revenueChartInst = null;
-// let financialHealthChartInst = null;
-// let dismissedAlerts = []; 
-
-
-// ========= LOGIN AUTHENTICATION IS DONE ========
-async function handleLogin(event) {
-    if (event) {
-        event.preventDefault();
-    }
-    
-    const usernameInput = document.getElementById('login-user').value.trim();
-    const pwdInput = document.getElementById('login-pwd').value;
-    const roleInput = document.getElementById('login-role').value;
-
-    const toBeSend = new FormData();
-    toBeSend.append('username', usernameInput);
-    toBeSend.append('password', pwdInput);
-    toBeSend.append('role', roleInput);
-
-    try {
-        const response = await fetch('authentication.php', {
-            method: 'POST',
-            body: toBeSend
-        });
-
-        const data = await response.json();
-
-        // lalagyan ng design feel ko pag nirun to pure text lang hehe
-        if (!data.success){
-            return alert("Access Denied: " + data.message);
-        }
-
-        currentUserRole = data.user.role;
-        currentUsername = data.user.name;
-        currentUserId = data.user.id;
-
-        document.getElementById('user-role-display').innerText = currentUserRole;
-        document.getElementById('user-name-display').innerText = currentUserName;
-
-        // para ipakita yung modules na kaya nilang iaccess based on roles
-        document.querySelectorAll('.module-link').forEach(btn => {
-            const allowedRoles = btn.getAttribute('data-roles').split(',');
-            if (allowedRoles.includes(currentUserRole)) {
-                btn.style.display = 'block';
-            } else {
-                btn.style.display = 'none';
-            }
-        });
-
-        document.getElementById('auth-screen').classList.add('hidden');
-        document.getElementById('app-sidebar').style.display = 'flex';
-        document.getElementById('app-content').style.display = 'flex';
-
-        switchModule('dashboard');
-        initCharts();
-        refreshUI();
-        renderSmsSettings(); 
-
-    } catch (error) {
-        console.error("System error: ", error);
-        alert("A connection error occurred with the server. Please ensure the database hosting is up.")
-    }
-}
-
-//   =============== WORKING FINE ===========
-function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    input.type = input.type === "password" ? "text" : "password";
-}
-
+let inventoryHistory = []; 
+let totalRevenue = 226.75; 
+let currentUserRole = "Owner";
+let currentUserName = "John Kaye P. Fernandez";
+let currentUserId = "admin";
+let revenueChartInst = null;
+let financialHealthChartInst = null;
+let dismissedAlerts = []; 
 
 function showForgotPassword() {
     document.getElementById('form-login').classList.add('hidden');
@@ -120,34 +52,17 @@ function showForgotPassword() {
     document.getElementById('tab-signup').classList.remove('active');
 }
 
-async function handleForgotPassword() {
+function handleForgotPassword() {
     const identifier = document.getElementById('forgot-identifier').value.trim();
     if(!identifier) return alert("Please enter your email or username.");
 
     //alert notif design
 
     // php confirmation to send approval password request
-    const formData = new formData();
-    formData.append('action', 'forgot_password');
-    formData.append('identifier', identifier);
 
-    try {
-        const response = await fetch('authentication.php', {
-            method: 'POST',
-            body: formData
-        });
-        const data = await response.json();
-
-        if (!data.success) {
-            return alert("Verification Failed: " + data.message);
-        }
-
-        alert(`A password reset link has been sent to the email associated with "${identifier}". Please check your inbox.`);
-        document.getElementById('forgot-identifier').value = '';
-        switchAuthTab('login');
-    } catch (error){
-        alert("A connection error occured.");
-    }
+    alert(`A password reset link has been sent to the email associated with "${identifier}". Please check your inbox.`);
+    document.getElementById('forgot-identifier').value = '';
+    switchAuthTab('login');
 }
 
 function switchAuthTab(tab) {
@@ -163,41 +78,66 @@ function switchAuthTab(tab) {
     }
 }
 
-
-
-function closeModal(id) { 
-    document.getElementById(id).classList.add('hidden'); 
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    input.type = input.type === "password" ? "text" : "password";
 }
 
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
 function handleSignup() { 
-    const role = document.getElementById('signup-role').value;
-    const firstName = document.getElementById('signup-firstname').value.trim();
-    const middleInitial = document.getElementById('signup-middleInitial').value.trim();
-    const surname = document.getElementById('signup-surname').value.trim();
+    const name = document.getElementById('signup-name').value.trim();
     const email = document.getElementById('signup-email').value.trim();
-    const phoneNumber = document.getElementById('signup-phoneNumber').value.trim();
-    const username = document.getElementById('signup-username').value.trim();
-    const password = document.getElementById('signup-pwd').value;
 
-    if(!role || !firstName || !middleInitial || !surname || !phoneNumber || !email || !username || !password) return alert("Please fill in all required fields.");
-
-    const toBeSend = new formData();
-    toBeSend.append('action', 'signup');
-    toBeSend.append('role', role);
-    toBeSend.append('firstname', firstName);
-    toBeSend.append('middleInitial', middleInitial ?? '');
-    toBeSend.append('surname', surname);
-    toBeSend.append('phoneNumber', phoneNumber);
-    toBeSend.append('email', email);
-    toBeSend.append('username', username);
-    toBeSend.append('password', password);
+    if(!name || !email) return alert("Please fill in all required fields, including your email address.");
 
     alert("Account request submitted. Waiting for Owner approval."); 
     switchAuthTab('login'); 
 }
 
+function handleLogin() {
+    const usernameInput = document.getElementById('login-user').value.trim();
+    const pwdInput = document.getElementById('login-pwd').value;
 
+    let userObj = usersDb.find(u => u.id === usernameInput);
 
+    if (!userObj) {
+        const selectedRole = document.getElementById('login-role').value;
+        userObj = selectedRole === "Owner" ? usersDb[0] : usersDb[1];
+    }
+
+    if (userObj.password !== pwdInput) {
+        return alert("Access Denied: Invalid password.");
+    }
+
+    currentUserRole = userObj.role;
+    currentUserName = userObj.name;
+    currentUserId = userObj.id;
+
+    userObj.status = "Online";
+    userObj.lastLogin = new Date().toLocaleString();
+
+    document.getElementById('user-role-display').innerText = currentUserRole;
+    document.getElementById('user-name-display').innerText = currentUserName;
+
+    document.querySelectorAll('.module-link').forEach(btn => {
+        const allowedRoles = btn.getAttribute('data-roles').split(',');
+        if (allowedRoles.includes(currentUserRole)) {
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
+    });
+
+    document.getElementById('auth-screen').classList.add('hidden');
+    document.getElementById('app-sidebar').style.display = 'flex';
+    document.getElementById('app-content').style.display = 'flex';
+
+    switchModule('dashboard');
+    initCharts();
+    refreshUI();
+    renderSmsSettings(); 
+}
 
 function handleLogout() {
     let userObj = usersDb.find(u => u.id === currentUserId);

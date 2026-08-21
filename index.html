@@ -21,51 +21,36 @@
 
             <!-- LOGIN FORM -->
             <div id="form-login">
-                <form action="authentication.php" onsubmit="handleLogin('login')">
-                    <div class="form-group">
-                        <label>System Role Authorization</label>
-                        <select id="login-role" name="role">
-                            <option value="Owner">Admin</option>
-                            <option value="Employee">Employee/Staff</option>
-                        </select>
+                <div class="form-group">
+                    <label>System Role Authorization</label>
+                    <select id="login-role">
+                        <option value="Owner">Owner (Admin)</option>
+                        <option value="Employee">Employee (Staff)</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Username</label>
+                    <input type="text" id="login-user" value="admin" action="index.php">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-pwd" value="lyfe2026">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                        <label class="pwd-toggle" style="margin-top: 0;"><input type="checkbox" onchange="togglePassword('login-pwd')"> Show Password</label>
+                        <span style="font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: bold;" onclick="showForgotPassword()">Forgot Password?</span>
                     </div>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" id="login-user" value="" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="login-pwd" value="" name="password">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
-                            <label class="pwd-toggle" style="margin-top: 0;"><input type="checkbox" onchange="togglePassword('login-pwd')"> Show Password</label>
-                            <span style="font-size: 0.85rem; color: var(--primary); cursor: pointer; font-weight: bold;" onclick="showForgotPassword()">Forgot Password?</span>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1.05rem;">Secure Login</button>
-                </form>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1.05rem;" onclick="handleLogin()">Secure Login</button>
             </div>
 
             <!-- SIGN UP FORM -->
             <div id="form-signup" class="hidden">
                 <p style="text-align:center; color:#666;">New staff accounts must be verified by the Owner.</p>
-                <div class="form-group">
-                    <label>Signup Role</label>
-                    <select id="signup-role" name="role">
-                        <option value="1">Admin</option>
-                        <option value="2">Employee/Staff</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>First Name</label><input type="text" id="signup-firstname"></div>
-                <div class="form-group"><label>Middle Initial</label><input type="text" id="signup-middleInitial"></div>
-                <div class="form-group"><label>Surname</label><input type="text" id="signup-surname"></div>
+                <div class="form-group"><label>Full Name</label><input type="text" id="signup-name"></div>
                 <div class="form-group"><label>Email Address</label><input type="email" id="signup-email" placeholder="name@example.com"></div>
-                <div class="form-group"><label>Phone Number</label><input type="text" id="signup-phoneNumber" placeholder="e.g. 09123456789"></div>
-                <div class="form-group"><label>Username</label><input type="text" id="signup-username"></div>
+                <div class="form-group"><label>Username</label><input type="text" id="signup-user"></div>
                 <div class="form-group">
                     <label>Create Password</label>
                     <input type="password" id="signup-pwd">
-                    <label>Confirm Password</label>
-                    <input type="password" id="signup-confirm-pwd">
                 </div>
                 <button class="btn btn-secondary" style="width: 100%; padding: 14px; font-size: 1.05rem;" onclick="handleSignup()">Request Access</button>
             </div>
@@ -185,8 +170,8 @@
         <!-- TOP BAR (CURRENT LOGIN USER) -->
         <div class="topbar">
             <div>
-                <h3 style="margin: 0; color: var(--dark);">Session Role: <span id="user-role-display" style="color: var(--primary);">Placeholher</span></h3>
-                <p style="margin: 0; font-size: 0.85rem; color: #6c757d;" id="user-name-display">Placeholher</p>
+                <h3 style="margin: 0; color: var(--dark);">Session Role: <span id="user-role-display" style="color: var(--primary);">Owner</span></h3>
+                <p style="margin: 0; font-size: 0.85rem; color: #6c757d;" id="user-name-display">John Kaye P. Fernandez</p>
             </div>
             <span id="current-date" style="color: #495057; font-weight: 600;"></span>
         </div>
@@ -513,7 +498,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="script.js"></script>    
 </body>
 </html>

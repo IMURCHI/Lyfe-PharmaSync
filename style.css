@@ -302,6 +302,7 @@ tr:hover {
     background-color: #f8f9fa; 
 }
     
+
 .grid-cards { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -334,181 +335,69 @@ tr:hover {
 }
     
 
-
-/* POS Layout */ 
-.pos-layout { 
-    display: flex; 
-    gap: 25px; 
-    height: 65vh;
-    min-height: 500px; 
-}
-    
-.pos-items { 
-    flex: 7; 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-    gap: 15px; 
-    overflow-y: auto; 
-    align-content: start; 
-    padding-right: 10px; 
-}
-    
-.pos-item-btn { 
-    background: white; 
-    border: 1px solid var(--border); 
-    padding: 20px 15px; 
-    border-radius: 8px; 
-    cursor: pointer; 
-    text-align: center; 
-    transition: 0.2s; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between; 
-    height: 140px; 
-}
-    
-.pos-item-btn:hover { 
-    border-color: var(--secondary); 
-    transform: translateY(-3px); 
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08); 
-}
-    
-.pos-cart { 
-    flex: 3; 
-    background: white; 
-    border-radius: 8px; 
-    display: flex; 
-    flex-direction: column; 
-    padding: 20px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-}
-    
-.badge { 
-    padding: 5px 10px; 
-    border-radius: 20px; 
-    font-size: 0.75rem; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-}
-    
-.badge-warning { 
-    background: #fff3cd; 
-    color: #856404; 
-} 
-
-.badge-danger { 
-    background: #f8d7da; 
-    color: #721c24; 
-}
-
-badge-success { 
-    background: #d4edda; 
-    color: #155724; 
-}
-    
-.badge-info { 
-    background: #cce5ff; 
-    color: #004085; 
-}
-   
-.chart-container { 
-    background: white; 
-    padding: 25px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-    margin-top: 25px; 
-}
-    
- 
-
-/* Custom Toggle Switch */ 
-.switch { 
-    position: relative; 
-    display: inline-block; 
-    width: 40px; 
-    height: 20px; 
-}
-    
-.switch input { 
-    opacity: 0; 
-    width: 0; 
-    height: 0; 
-}
-    
-.slider { 
-    position: absolute; 
-    cursor: pointer; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; 
-    background-color: #ccc; 
-    transition: .4s; 
-    border-radius: 34px; 
-}
-    
-.slider:before { 
-    position: absolute; 
-    content: ""; 
-    height: 14px; 
-    width: 14px; 
-    left: 3px; 
-    bottom: 3px; 
-    background-color: white; 
-    transition: .4s; 
-    border-radius: 50%; 
-}
-    
-input:checked + .slider { 
-    background-color: var(--secondary); 
-}
-    
-input:checked + .slider:before { 
-    transform: translateX(20px); 
-}
     
 
+/* POS Layout */
+    
+.pos-layout { display: flex; gap: 25px; height: 65vh; min-height: 500px; }
+    
+.pos-items { flex: 7; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; overflow-y: auto; align-content: start; padding-right: 10px; }
+    
 
+.pos-item-btn { background: white; border: 1px solid var(--border); padding: 20px 15px; border-radius: 8px; cursor: pointer; text-align: center; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; height: 140px; }
+    
+.pos-item-btn:hover { border-color: var(--secondary); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.08); }
+    
+.pos-cart { flex: 3; background: white; border-radius: 8px; display: flex; flex-direction: column; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    
+
+    
+.badge { padding: 5px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; }
+    
+.badge-warning { background: #fff3cd; color: #856404; }
+    
+
+.badge-danger { background: #f8d7da; color: #721c24; }
+    
+
+badge-success { background: #d4edda; color: #155724; }
+    
+.badge-info { background: #cce5ff; color: #004085; }
+    
+
+    
+.chart-container { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 25px; }
+    
+
+    
+/* Custom Toggle Switch */
+    
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+    
+.switch input { opacity: 0; width: 0; height: 0; }
+    
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+    
+.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+    
+input:checked + .slider { background-color: var(--secondary); }
+    
+input:checked + .slider:before { transform: translateX(20px); }
+    
+
+    
 /* Filter Bar Styles */
-.filter-bar { 
-    display: flex; 
-    gap: 15px; 
-    margin-bottom: 20px; 
-    background: white; 
-    padding: 15px; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.02); 
-    border: 1px solid var(--border); 
-    align-items: center; 
-}
     
-.filter-bar .form-group { 
-    margin-bottom: 0; 
-    flex: 1; 
-}
+.filter-bar { display: flex; gap: 15px; margin-bottom: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border: 1px solid var(--border); align-items: center; }
     
-.filter-bar select, .filter-bar input { 
-    border-color: #ced4da; 
-}
+.filter-bar .form-group { margin-bottom: 0; flex: 1; }
+    
+.filter-bar select, .filter-bar input { border-color: #ced4da; }
     
 
     
-/* NEW: Recommendation Widget Styles */  
-.recommendation-widget { 
-    background: #e8f4f8; 
-    border-left: 4px solid #17a2b8; 
-    padding: 15px;
-    border-radius: 6px; 
-    margin-bottom: 15px; 
-}
+/* NEW: Recommendation Widget Styles */
     
-.recommendation-item { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    background: white; 
-    padding: 10px; 
-    margin-top: 8px; 
-    border-radius: 4px; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-}
+.recommendation-widget { background: #e8f4f8; border-left: 4px solid #17a2b8; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    
+.recommendation-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 10px; margin-top: 8px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
