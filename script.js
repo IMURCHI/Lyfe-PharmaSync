@@ -41,63 +41,9 @@ document.getElementById('current-date').innerText = new Date().toLocaleDateStrin
 // let financialHealthChartInst = null;
 // let dismissedAlerts = []; 
 
-function showForgotPassword() {
-    document.getElementById('form-login').classList.add('hidden');
-    document.getElementById('form-signup').classList.add('hidden');
-    document.getElementById('form-forgot').classList.remove('hidden');
-
-    //more php work here to send password request
-
-    document.getElementById('tab-login').classList.remove('active');
-    document.getElementById('tab-signup').classList.remove('active');
-}
-
-function handleForgotPassword() {
-    const identifier = document.getElementById('forgot-identifier').value.trim();
-    if(!identifier) return alert("Please enter your email or username.");
-
-    //alert notif design
-
-    // php confirmation to send approval password request
-
-    alert(`A password reset link has been sent to the email associated with "${identifier}". Please check your inbox.`);
-    document.getElementById('forgot-identifier').value = '';
-    switchAuthTab('login');
-}
-
-function switchAuthTab(tab) {
-    document.getElementById('tab-login').classList.remove('active');
-    document.getElementById('tab-signup').classList.remove('active');
-    document.getElementById('form-login').classList.add('hidden');
-    document.getElementById('form-signup').classList.add('hidden');
-    document.getElementById('form-forgot').classList.add('hidden');
-
-    if(tab === 'login' || tab === 'signup') {
-        document.getElementById(`tab-${tab}`).classList.add('active');
-        document.getElementById(`form-${tab}`).classList.remove('hidden');
-    }
-}
-
-function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    input.type = input.type === "password" ? "text" : "password";
-}
-
-function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-function handleSignup() { 
-    const name = document.getElementById('signup-name').value.trim();
-    const email = document.getElementById('signup-email').value.trim();
-
-    if(!name || !email) return alert("Please fill in all required fields, including your email address.");
-
-    alert("Account request submitted. Waiting for Owner approval."); 
-    switchAuthTab('login'); 
-}
-
 
 // ========= LOGIN AUTHENTICATION IS DONE ========
-function handleLogin(event) {
+async function handleLogin(event) {
     if (event) {
         event.preventDefault();
     }
@@ -155,6 +101,103 @@ function handleLogin(event) {
         alert("A connection error occurred with the server. Please ensure the database hosting is up.")
     }
 }
+
+//   =============== WORKING FINE ===========
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    input.type = input.type === "password" ? "text" : "password";
+}
+
+
+function showForgotPassword() {
+    document.getElementById('form-login').classList.add('hidden');
+    document.getElementById('form-signup').classList.add('hidden');
+    document.getElementById('form-forgot').classList.remove('hidden');
+
+    //more php work here to send password request
+
+    document.getElementById('tab-login').classList.remove('active');
+    document.getElementById('tab-signup').classList.remove('active');
+}
+
+async function handleForgotPassword() {
+    const identifier = document.getElementById('forgot-identifier').value.trim();
+    if(!identifier) return alert("Please enter your email or username.");
+
+    //alert notif design
+
+    // php confirmation to send approval password request
+    const formData = new formData();
+    formData.append('action', 'forgot_password');
+    formData.append('identifier', identifier);
+
+    try {
+        const response = await fetch('authentication.php', {
+            method: 'POST',
+            body: formData
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            return alert("Verification Failed: " + data.message);
+        }
+
+        alert(`A password reset link has been sent to the email associated with "${identifier}". Please check your inbox.`);
+        document.getElementById('forgot-identifier').value = '';
+        switchAuthTab('login');
+    } catch (error){
+        alert("A connection error occured.");
+    }
+}
+
+function switchAuthTab(tab) {
+    document.getElementById('tab-login').classList.remove('active');
+    document.getElementById('tab-signup').classList.remove('active');
+    document.getElementById('form-login').classList.add('hidden');
+    document.getElementById('form-signup').classList.add('hidden');
+    document.getElementById('form-forgot').classList.add('hidden');
+
+    if(tab === 'login' || tab === 'signup') {
+        document.getElementById(`tab-${tab}`).classList.add('active');
+        document.getElementById(`form-${tab}`).classList.remove('hidden');
+    }
+}
+
+
+
+function closeModal(id) { 
+    document.getElementById(id).classList.add('hidden'); 
+}
+
+function handleSignup() { 
+    const role = document.getElementById('signup-role').value;
+    const firstName = document.getElementById('signup-firstname').value.trim();
+    const middleInitial = document.getElementById('signup-middleInitial').value.trim();
+    const surname = document.getElementById('signup-surname').value.trim();
+    const email = document.getElementById('signup-email').value.trim();
+    const phoneNumber = document.getElementById('signup-phoneNumber').value.trim();
+    const username = document.getElementById('signup-username').value.trim();
+    const password = document.getElementById('signup-pwd').value;
+
+    if(!role || !firstName || !middleInitial || !surname || !phoneNumber || !email || !username || !password) return alert("Please fill in all required fields.");
+
+    const toBeSend = new formData();
+    toBeSend.append('action', 'signup');
+    toBeSend.append('role', role);
+    toBeSend.append('firstname', firstName);
+    toBeSend.append('middleInitial', middleInitial ?? '');
+    toBeSend.append('surname', surname);
+    toBeSend.append('phoneNumber', phoneNumber);
+    toBeSend.append('email', email);
+    toBeSend.append('username', username);
+    toBeSend.append('password', password);
+
+    alert("Account request submitted. Waiting for Owner approval."); 
+    switchAuthTab('login'); 
+}
+
+
+
 
 function handleLogout() {
     let userObj = usersDb.find(u => u.id === currentUserId);
