@@ -55,6 +55,7 @@
                     "success" => false, 
                     "message" => "Invalid username or role authorization."
                 ]);
+                exit;
             }
 
             // Note: This checks raw passwords for development. 
@@ -94,7 +95,7 @@
             $username = trim($_POST['username'] ?? '');
             $passwrd = $_POST['password'] ?? '';
 
-            if(empty($role) || empty($$firstName) || empty($middleInitial) || empty($surname) || empty($phoneNumber) || empty($email) || empty($username) || empty($passwrd)){
+            if(empty($role) || empty($firstName) || empty($middleInitial) || empty($surname) || empty($phoneNumber) || empty($email) || empty($username) || empty($passwrd)){
                 echo json_encode([
                     "success" => false, 
                     "message" => "All fields are required."
@@ -155,7 +156,7 @@
             $stmt->execute([$identifier, $identifier]);
             $userRecord = $stmt -> fetch();
 
-            if ($userRecord || empty($userRecord['phone_number'])){
+            if (!$userRecord || empty($userRecord['phone_number'])){
                 echo json_encode([
                     "success" => false, 
                     "message" => "No account found, or no mobile number is registered to this account."
@@ -165,6 +166,8 @@
 
             // code for including api key for password reset
             $otpCode = rand(100000, 999999);
+
+// sadmlkandkjabsdhkab sdkhabkdnaw
 
             // $API_Key = '';
             // $recipientNumber = $userRecord['phone_number'];

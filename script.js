@@ -71,7 +71,7 @@ async function handleLogin(event) {
         }
 
         currentUserRole = data.user.role;
-        currentUsername = data.user.name;
+        currentUserName = data.user.name;
         currentUserId = data.user.id;
 
         document.getElementById('user-role-display').innerText = currentUserRole;
@@ -127,7 +127,7 @@ async function handleForgotPassword() {
     //alert notif design
 
     // php confirmation to send approval password request
-    const formData = new formData();
+    const formData = new FormData();
     formData.append('action', 'forgot_password');
     formData.append('identifier', identifier);
 
@@ -181,7 +181,7 @@ function handleSignup() {
 
     if(!role || !firstName || !middleInitial || !surname || !phoneNumber || !email || !username || !password) return alert("Please fill in all required fields.");
 
-    const toBeSend = new formData();
+    const toBeSend = new FormData();
     toBeSend.append('action', 'signup');
     toBeSend.append('role', role);
     toBeSend.append('firstname', firstName);
