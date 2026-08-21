@@ -53,6 +53,7 @@ async function handleLogin(event) {
     const roleInput = document.getElementById('login-role').value;
 
     const toBeSend = new FormData();
+    toBeSend.append('action', 'login');
     toBeSend.append('username', usernameInput);
     toBeSend.append('password', pwdInput);
     toBeSend.append('role', roleInput);
@@ -91,15 +92,15 @@ async function handleLogin(event) {
         document.getElementById('app-sidebar').style.display = 'flex';
         document.getElementById('app-content').style.display = 'flex';
 
-        switchModule('dashboard');
-        initCharts();
-        refreshUI();
-        renderSmsSettings(); 
-
     } catch (error) {
         console.error("System error: ", error);
         alert("A connection error occurred with the server. Please ensure the database hosting is up.")
     }
+    
+    switchModule('dashboard');
+    initCharts();
+    refreshUI();
+    renderSmsSettings(); 
 }
 
 //   =============== WORKING FINE ===========

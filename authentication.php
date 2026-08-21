@@ -1,14 +1,14 @@
 <?php
     header('Content-Type: application/json');
 
-    $host = '127.0.0.1';  // to be replace by proper hosting sites
+    $host = 'localhost';  // to be replace by proper hosting sites
     $database = 'lyfepharmacydb';
     
     // user credential
     $user = 'root';  // to be replace by user;
     $pass = '';
     
-    $dsn = "mysql:host=$host; dbname = $database; charset=utf8mb4";
+    $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";
     
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -83,7 +83,7 @@
                     "name" => trim($userRecord['first_name'] . ' ' . $userRecord['last_name']),
                     "role" => $userRecord['role_name']
                 ]]);
-            break;
+        break;
         
         case 'signup':
             $role = $_POST['role'] ?? '';
@@ -139,7 +139,7 @@
                     "message" => "Failed to create account."
                 ]);
             }
-            break;
+        break;
 
         case 'forgot_password':
             $identifier = trim($_POST['identifier'] ?? '');
@@ -166,8 +166,6 @@
 
             // code for including api key for password reset
             $otpCode = rand(100000, 999999);
-
-// sadmlkandkjabsdhkab sdkhabkdnaw
 
             // $API_Key = '';
             // $recipientNumber = $userRecord['phone_number'];
@@ -207,13 +205,56 @@
                 "message" => "A password reset link has been simulated and 'sent' to the email on file."
             ]);
 
-            break;
+        break;
+
+        case 'fetch_users':
+            // Fetch all users and their current roles from the database
+            $stmt = $pdo->prepare('SELECT u.user_id, u.first_name, u.last_name, u.username, u.status, r.role_id, r.role_name 
+                                   FROM users u 
+                                   JOIN roles r ON u.role_id = r.role_id 
+                                   ORDER BY u.user_id DESC');
+            $stmt->execute();
+            $users = $stmt->fetchAll();
+            
+            echo json_encode([
+                "success" => true, 
+                "users" => $users
+            ]);
+        break;
+
+        case 'update_user_access':
+            $targetUserId = $_POST['target_user_id'] ?? '';
+            $newStatus = trim($_POST['new_status'] ?? '');
+            $newRoleId = $_POST['new_role_id'] ?? '';
+
+            if (empty($targetUserId) || empty($newStatus) || empty($newRoleId)) {
+                echo json_encode([
+                    "success" => false, 
+                    "message" => "Missing required data."
+                ]);
+                exit;
+            }
+
+            // Update the user's status (e.g., from Pending to Active) and their role
+            $updateStmt = $pdo->prepare('UPDATE users SET status = ?, role_id = ? WHERE user_id = ?');
+            if ($updateStmt->execute([$newStatus, $newRoleId, $targetUserId])) {
+                echo json_encode([
+                    "success" => true, 
+                    "message" => "User access updated successfully."
+                    ]);
+            } else {
+                echo json_encode([
+                    "success" => false, 
+                    "message" => "Failed to update user in the database."
+                ]);
+            }
+        break;
 
         default:
             echo json_encode([
                 "success" => false, 
                 "message" => "Invalid action."
             ]);
-            break;
+        break;
     }      
 ?>
