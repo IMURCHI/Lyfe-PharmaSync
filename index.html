@@ -21,7 +21,7 @@
 
             <!-- LOGIN FORM -->
             <div id="form-login">
-                <form action="authentication.php" onsubmit="handleLogin('login')">
+                <form onsubmit="handleLogin(event)">
                     <div class="form-group">
                         <label>System Role Authorization</label>
                         <select id="login-role" name="role">
@@ -490,15 +490,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Employee Name</th>
-                            <th>Authorization Level</th>
+                            <th>Employee (Username)</th>
+                            <th>Role Authorization</th>
                             <th>Account Status</th>
-                            <th>Last Login</th>
-                            <th>Last Logout</th>
+                            <th>Admin Actions</th>
                         </tr>
                     </thead>
                     <tbody id="users-tbody">
-                        </tbody>
+                        <tr><td colspan="4" style="text-align:center; color:#888;">Loading users...</td></tr>
+                    </tbody>
                 </table>
             </div>
         </div>
