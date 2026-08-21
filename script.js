@@ -1,36 +1,6 @@
 document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-// inventory db
-// let db = [
-//     { id: 1, batch: "B-101", name: "Amoxicillin 500mg Cap", stock: 350, price: 12.50, expiry: "2027-05-10", rxRequired: true }, 
-//     { id: 2, batch: "B-102", name: "Paracetamol 500mg Tab", stock: 15, price: 5.00, expiry: "2027-11-20", rxRequired: false },
-//     { id: 3, batch: "B-103", name: "Ascorbic Acid (Vit C)", stock: 120, price: 150.00, expiry: "2026-04-15", rxRequired: false },
-//     { id: 4, batch: "B-104", name: "Ibuprofen 400mg Tab", stock: 200, price: 8.75, expiry: "2028-01-12", rxRequired: false },
-//     { id: 5, batch: "B-105", name: "Cetirizine 10mg Tab", stock: 85, price: 15.00, expiry: "2026-08-30", rxRequired: false },
-//     { id: 6, batch: "B-106", name: "Loperamide 2mg Cap", stock: 50, price: 6.25, expiry: "2027-02-28", rxRequired: false },
-//     { id: 7, batch: "B-107", name: "Salbutamol 2mg Tab", stock: 300, price: 4.50, expiry: "2028-11-05", rxRequired: true }, 
-//     { id: 8, batch: "B-108", name: "Losartan 50mg Tab", stock: 18, price: 22.00, expiry: "2026-05-20", rxRequired: true }, 
-//     { id: 9, batch: "B-109", name: "Omeprazole 20mg Cap", stock: 150, price: 35.00, expiry: "2027-09-15", rxRequired: true }, 
-//     { id: 10, batch: "B-110", name: "Mefenamic Acid 500mg", stock: 110, price: 11.50, expiry: "2026-04-18", rxRequired: true } 
-// ];
 
-// // user db
-// let usersDb = [
-//     { id: "admin", name: "John Kaye P. Fernandez", role: "Owner", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
-//     { id: "joseph_staff", name: "Joseph Osena", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" },
-//     { id: "francis_staff", name: "Francis Mariscal", role: "Employee", status: "Offline", lastLogin: "N/A", lastLogout: "N/A", smsNumber: "", smsEnabled: false, password: "lyfe2026" }
-// ];
-
-// // 
-// let cart = [];
-
-// // auditlogs db
-// let salesHistory = [
-//     { txn: "TXN-84729", items: "Paracetamol 500mg Tab | Cetirizine 10mg Tab", qty: 2, total: 20.00, time: "09:14 AM", cashier: "Joseph Osena" },
-//     { txn: "TXN-39201", items: "Losartan 50mg Tab | Ascorbic Acid (Vit C)", qty: 2, total: 172.00, time: "11:30 AM", cashier: "Francis Mariscal" },
-//     { txn: "TXN-55821", items: "Amoxicillin 500mg Cap", qty: 1, total: 12.50, time: "01:45 PM", cashier: "Joseph Osena" },
-//     { txn: "TXN-91023", items: "Mefenamic Acid 500mg | Loperamide 2mg Cap | Salbutamol 2mg Tab", qty: 3, total: 22.25, time: "03:10 PM", cashier: "Francis Mariscal" }
-// ];
 
 // let inventoryHistory = []; 
 // let totalRevenue = 226.75; 
@@ -40,6 +10,10 @@ document.getElementById('current-date').innerText = new Date().toLocaleDateStrin
 // let revenueChartInst = null;
 // let financialHealthChartInst = null;
 // let dismissedAlerts = []; 
+
+
+
+
 
 
 // ========= LOGIN AUTHENTICATION IS DONE ========
